@@ -42,12 +42,12 @@ describe("Race", function () {
 			// act
 			var actual = race.withHareSpeed(0)
 							.withTortoiseSpeed(10)
-							.withRaceDistance(20)
+							.withRaceDistance(200)
 							.withHareSleepDistance(10)
 							.withTorotiseDistanceToFinish(10)
 							.runRace();
 			// assert
-			expect(actual).toBe("The tortoise won the race. The hare is sleeping for 1 minutes.");
+			expect(actual).toBe("The tortoise won the race. The hare is sleeping for 18 minutes.");
 		});
 
 		// (5) NOTE: if distanceToFinish > 0, adjust race parameters to account for this
@@ -99,19 +99,19 @@ describe("Race", function () {
 	});
 
 	describe("Given hare sleeping at start and waking up at 2/3 through race",function(){
-		// (7) NOTE: adjsuted hareMinutes when hare slept to account for remaining distance instead of where it slept
-		it("When race distance 20 meters expect tortoise wins while hare sleeps for 1 minute", function() {
+		// (7) NOTE: adjusted hareMinutes when hare slept to account for remaining distance instead of where it slept
+		it("When hare four times as fast expect a tie", function() {
 			// arrange
 			var race = new fableRace();
 			// act
-			var actual = race.withHareSpeed(100)
+			var actual = race.withHareSpeed(200)
 							.withTortoiseSpeed(50)
-							.withRaceDistance(300)
-							.withHareSleepDistance(200)
-							.withTorotiseDistanceToFinish(100)
+							.withRaceDistance(600)
+							.withHareSleepDistance(0)
+							.withTorotiseDistanceToFinish(200)
 							.runRace();
 			// assert
-			expect(actual).toBe("The hare and tortoise tie. The hare is sleeping for 2 minutes.");
+			expect(actual).toBe("The hare and tortoise tie. The hare is sleeping for 8 minutes.");
 		});
 	});
 });
