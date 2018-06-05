@@ -82,5 +82,20 @@ describe("Race", function () {
 			// assert
 			expect(actual).toBe("The hare won the race. The hare is sleeping for 0 minutes.");
 		});
+
+		// (6) NOTE: handled tie
+		it("When hare never sleeps exepect hare win", function() {
+			// arrange
+			var race = new fableRace();
+			// act
+			var actual = race.withHareSpeed(10)
+							.withTortoiseSpeed(10)
+							.withRaceDistance(100)
+							.withHareSleepDistance(100)
+							.withTorotiseDistanceToFinish(0)
+							.runRace();
+			// assert
+			expect(actual).toBe("The hare and tortoise tie. The hare is sleeping for 0 minutes.");
+		});
 	});
 });

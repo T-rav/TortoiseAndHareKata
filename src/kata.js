@@ -5,7 +5,7 @@ let fableRace = function() {
   let _hareSleepDistance;
   let _distanceToFinish;
 
-  let calculateWinner = function(){
+  let calcuateRaceOutcome = function(){
     let tortoiseMins = _distance / _tortoiseSpeed;
     let hareMinutes = _distance / _hareSpeed;
 
@@ -14,12 +14,16 @@ let fableRace = function() {
       hareMinutes = (_distanceToFinish + _hareSleepDistance) / _hareSpeed;
     }
 
-    let winner = 'hare';
+    let raceOutcome = 'hare won the race';
     if(tortoiseMins < hareMinutes){
-      winner = 'tortoise';
+      raceOutcome = 'tortoise won the race';
     }
 
-    return winner;
+    if(tortoiseMins == hareMinutes){
+      raceOutcome = 'hare and tortoise tie'
+    }
+
+    return raceOutcome;
   }
 
   return { 
@@ -40,8 +44,8 @@ let fableRace = function() {
                       return{
                         runRace:function(){
                           let sleepTime = (_distance - _hareSleepDistance) / _tortoiseSpeed;
-                          let winner = calculateWinner();
-                          return `The ${winner} won the race. The hare is sleeping for ${sleepTime} minutes.`;
+                          let raceOutcome = calcuateRaceOutcome();
+                          return `The ${raceOutcome}. The hare is sleeping for ${sleepTime} minutes.`;
                         }
                       }
                     }
