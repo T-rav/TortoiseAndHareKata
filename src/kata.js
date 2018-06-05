@@ -21,7 +21,7 @@ let fableRace = function() {
                       _distanceToFinish = distanceToFinish;
                       return{
                         runRace:function(){
-                          let sleepTime = _distance / _tortoiseSpeed;
+                          let sleepTime = (_distance - _hareSleepDistance) / _tortoiseSpeed;
                           return `The tortoise won the race. The hare is sleeping for ${sleepTime} minutes.`;
                         }
                       }
