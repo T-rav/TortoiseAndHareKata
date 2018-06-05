@@ -11,7 +11,7 @@ let fableRace = function() {
 
     if(_distanceToFinish > 0){
       tortoiseMins = _distanceToFinish / _tortoiseSpeed;
-      hareMinutes = (_distanceToFinish + _hareSleepDistance) / _hareSpeed;
+      hareMinutes = (_distanceToFinish + (_distance - _hareSleepDistance)) / _hareSpeed;
     }
 
     let raceOutcome = 'hare won the race';
