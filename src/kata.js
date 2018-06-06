@@ -26,6 +26,22 @@ let fableRace = function() {
     return raceOutcome;
   }
 
+  let calculateDistanceTorotiseTraveled = function(){
+    if((_hareSleepDistance == 0 && _distanceToFinish == 0)){
+      return _distance;
+    }
+
+    if(_distanceToFinish == 0){
+      return 0;
+    }
+
+    let timeForHareToGetToSleepLocation = _hareSleepDistance / _hareSpeed;
+    let distanceTorotiseTraveledWhenHareWentToSleep = _tortoiseSpeed * timeForHareToGetToSleepLocation;
+    let totalDistanceTorotiseTraveledWhileHareSlept = (_distance - distanceTorotiseTraveledWhenHareWentToSleep) - _distanceToFinish;
+    
+    return totalDistanceTorotiseTraveledWhileHareSlept;
+  }
+
   return { 
     withHareSpeed : function(hareSpeed){
       _hareSpeed = hareSpeed;
@@ -43,9 +59,10 @@ let fableRace = function() {
                       _distanceToFinish = distanceToFinish;
                       return{
                         runRace:function(){
-                          let sleepTime = Math.ceil(((_distance - _hareSleepDistance) - _distanceToFinish) / _tortoiseSpeed);
+                          let torotiseTravelDistance = calculateDistanceTorotiseTraveled();
+                          let hareSleepTime = Math.ceil(torotiseTravelDistance / _tortoiseSpeed);
                           let raceOutcome = calcuateRaceOutcome();
-                          return `The ${raceOutcome}. The hare is sleeping for ${sleepTime} minutes.`;
+                          return `The ${raceOutcome}. The hare is sleeping for ${hareSleepTime} minutes.`;
                         }
                       }
                     }

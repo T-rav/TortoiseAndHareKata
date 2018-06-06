@@ -36,18 +36,18 @@ describe("Race", function () {
 	describe("Given hare sleeping at start and waking up at 1/2 through race",function(){
 		// (3) NOTE: factoring in _hareSleepDistance into sleep duration calcuation
 		// let sleepTime = (_distance - _hareSleepDistance) / _tortoiseSpeed; => added - _hareSleepDistance to time calcuation
-		it("When race distance 20 meters expect tortoise wins while hare sleeps for 1 minute", function() {
+		it("When race distance 200 meters expect tortoise wins while hare sleeps for 18 minute", function() {
 			// arrange
 			var race = new fableRace();
 			// act
-			var actual = race.withHareSpeed(0)
+			var actual = race.withHareSpeed(20)
 							.withTortoiseSpeed(10)
 							.withRaceDistance(200)
-							.withHareSleepDistance(10)
+							.withHareSleepDistance(100)
 							.withTorotiseDistanceToFinish(10)
 							.runRace();
 			// assert
-			expect(actual).toBe("The tortoise won the race. The hare is sleeping for 18 minutes.");
+			expect(actual).toBe("The tortoise won the race. The hare is sleeping for 14 minutes.");
 		});
 
 		// (5) NOTE: if distanceToFinish > 0, adjust race parameters to account for this
@@ -62,7 +62,7 @@ describe("Race", function () {
 							.withTorotiseDistanceToFinish(1)
 							.runRace();
 			// assert
-			expect(actual).toBe("The tortoise won the race. The hare is sleeping for 5 minutes.");
+			expect(actual).toBe("The tortoise won the race. The hare is sleeping for 10 minutes.");
 		});
 	});
 	
